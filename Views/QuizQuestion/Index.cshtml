@@ -1,0 +1,205 @@
+﻿@{
+    Layout = "_QuizLayout";
+    var Questions = ViewBag.quentions;
+}
+<div class="counter" style="margin-top: 15px;">
+    <ul style="padding-left:0px">
+        <li class="list-group-item" style="   margin-top: 9px;flex-direction: row;align-items: center;padding: 10px 16px;gap: 8px;height: 44px;background: #FFFFFF;box-shadow: 1px 2px 6px rgb(0 0 0 / 5%);border-radius: 30px;flex: none;order: 0;flex-grow: 1;">
+            <div class="row">
+                <div class="col-2">
+                    <img src="~/pagecontents/questions/timebarcontents/clock.svg" style="float:right" />
+                </div>
+                <div class="col-7">
+                    <div class="progress" style="height: 3px;margin:10px">
+                        <div id="progress-div" class="progress-bar" role="progressbar" style="width: 20%; background-color: #D0392C;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div id="countdown">
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+
+@{
+    int indx = 0;
+    string displayValue = "";
+    int questionLength = Questions.Count;
+    int Qmark = ViewBag.Qmark;
+}
+
+<div id="nextLoader" style="text-align: center;display:none">
+    <div class="spinner-border" role="status" style="color:rgb(208, 57, 44)">
+    </div>
+  পরবর্তী প্রশ্ন
+</div>
+
+@foreach (var items in Questions)
+{
+    indx++;
+    if (indx > 1)
+    {
+        displayValue = "none";
+    }
+
+    <div id="quizQuestion_@indx" style="display:@displayValue">
+        <div class="row" style="display: flex;flex-direction: row;align-items: flex-start;padding: 0px;">
+            @if (items.quizType == 2)
+            {
+                <div class="Qimage">
+                    <img src="@items.imageLocation" style="width: 100%;height: 200px;padding: 20px; border-radius:35px" />
+                </div>
+            }
+            <div class="col-2">
+                <h4 class="tobng" style="color: #B8B8B8;font-weight: 600;font-size: 16px; float: right">@indx/5</h4>
+            </div>
+            <div class="col-10">
+                <h4 style="height: 61px;font-family: sans-serif;font-style: normal;font-weight: 400;font-size: 16px;align-items: center;color: #0D1A2D;">
+                    @items.question
+                </h4>
+            </div>
+        </div>
+        @foreach (var item in items.choices)
+        {
+            <ul class="list-group">
+                <li id="dsa_@indx" onclick="submitAnswer(@indx,@item,@items,@questionLength,@Qmark)" class="list-group-item list-group-item-action" style="border-radius: 8px;margin-bottom:2%; color: #666666;background: #FFFFFF;box-shadow: 1px 2px 6px rgb(0 0 0 / 5%);font-weight: 600;font-size: 16px;">@item.description</li>
+            </ul>
+        }
+    </div>
+}
+
+
+
+<div class="row m-0 bottom_nav fixed-bottom" style="box-shadow:none; background-color:inherit;  ">
+
+    <div class="text-center" style="width: 166px;
+    height: 20px;
+    font-family: sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    align-items: center;
+    color: #B8B8B8;
+    flex: none;
+    margin-left: 30%;
+    margin-top: 10%;">
+        <img src="~/pagecontents/landingpage/clickfinger.svg" />
+        Tap on the right answer
+    </div>
+</div>
+
+
+@*<div class="modal fade" id="myModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Your total Score <span id="totalScore"></span> </h4>
+            </div>
+
+            <div class="modal-footer">
+                <a asp-action="Index" asp-controller="Home" type="button" class="btn btn-secondary">Close</a>
+            </div>
+        </div>
+    </div>
+</div>*@
+
+@*timer Refresher*@
+
+@section Scripts{
+    <script>
+        var timetoAnser = 0;
+        var rmark = 5;
+        var expires = new Date();
+        expires.setSeconds(expires.getSeconds() + 23); // set timer to 60 seconds
+        var counter = setInterval(timer, 1);
+
+        $(document).ready(function () {
+        });
+
+        function timer() {
+            var timeDiff = expires - new Date();
+            var cpTime = (100-(timeDiff / 220));
+
+            var bar = document.getElementById("progress-div");
+            timetoAnser = 22002-timeDiff;
+            if (timeDiff <= 0) {
+                clearInterval(counter);
+                var matchScore = rightAnswer * rmark;
+                SubmitMatchResult(matchScore);
+            }else{
+                var seconds = new Date(timeDiff).getSeconds();
+                var milliSeconds = (new Date(timeDiff).getMilliseconds() / 10).toFixed(0);
+                var seconds = seconds < 10 ? "0" + seconds : seconds;
+                var milliSeconds = milliSeconds < 10 ? "0" + milliSeconds : milliSeconds;
+                cpTime = (100-(timeDiff / 220));
+                bar.style.width = cpTime + "%"
+                document.getElementById("countdown").innerHTML = seconds + ":" + milliSeconds;
+                //console.log(timeDiff);
+            }
+
+   // watch for spelling
+        }
+
+
+        //timer
+
+
+
+        var rightAnswer = 0;
+        function submitAnswer(index, option, question, questionlength, Qmark) {
+            var nextIndex = index + 1;
+            $.ajax({
+                method: "GET",
+                url: "QuizQuestion/CheckAnswer",
+                data: {
+                    questionId: question.questionId,
+                    choiceId: option.choiceId
+                },
+                beforeSend: function () {
+                    $('#quizQuestion_' + index).hide();
+                    $('#nextLoader').show();
+                },
+                success: function (response) {
+                    if (response.data == true) {
+                        rightAnswer = rightAnswer + 1;
+                    }
+                },
+                error: function () {
+                      $('#nextLoader').hide();
+                },
+                complete: function () {
+                    $('#nextLoader').hide();
+                    if (nextIndex > questionlength) {
+                        $('#quizQuestion_' + index).hide();
+                        $('#quizQuestion_' + nextIndex).show();
+                        var matchScore = rightAnswer * Qmark
+                        SubmitMatchResult(matchScore);
+                    } else {
+                        $('#quizQuestion_' + index).hide();
+                        $('#quizQuestion_' + nextIndex).show();
+                    }
+                }
+            });
+
+        }
+
+
+        function SubmitMatchResult(matchScore) {
+            var score = matchScore;
+            var timetoAnswer = timetoAnser;
+            if(timetoAnser > 22000){
+                timetoAnswer = 22000;
+            }
+            var url = '@Url.Action("SubmitMatchResult", "QuizQuestion")';
+            url += '?Score=' + score + '&timetoAnswer=' + timetoAnswer;
+            window.location.href = url;
+        }
+
+
+    </script>
+}
+
+
+

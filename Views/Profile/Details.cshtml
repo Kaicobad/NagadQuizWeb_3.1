@@ -1,0 +1,203 @@
+﻿
+
+<style>
+    /*    div#bodyDiv {
+                    height: 100vh;
+                    background-image: linear-gradient(180deg, #EC0613 0%, #F58220 100%);
+                }*/
+
+    html, body {
+        background-image: linear-gradient(180deg, #EC0613 0%, #F58220 100%);
+    }
+
+    .boxBasic {
+        padding: 10px;
+        border-radius: 8px;
+        background-color: white;
+        margin-left: 8px;
+        margin-right: 3px;
+        box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.05);
+        margin-top: 15px;
+    }
+
+    .boxBasic2 {
+        padding: 10px;
+        border-radius: 8px;
+        background-image: linear-gradient(315deg, #ED2F2B -1.91%, #FB6C3C 83.97%);
+        margin-left: 8px;
+        margin-right: 3px;
+        box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.05);
+        margin-top: 15px;
+    }
+
+    .boxbtom {
+        padding: 10px;
+        margin-left: 8px;
+        margin-right: 3px;
+    }
+
+    .row > * {
+        padding-left: 0px;
+    }
+
+</style>
+
+<nav class="navbar navbar-light" style="background-color:white;padding:20px 15px;">
+    <div class="container-fluid" style="margin-left:-5px">
+        <a class="navbar-brand" asp-action="index" asp-controller="Home" style="width:100%;">
+            <h4 style="margin-top: 10px;  color: black; font-weight: 500;font-size:20px">
+                প্রোফাইল
+            </h4>
+        </a>
+    </div>
+</nav>
+
+<div id="bodyDiv" style="padding-top: 30px">
+
+    <div class="text-center" style="">
+        <img style="position:absolute;z-index:9999;margin-left: -45px;" src="~/pagecontents/icon/avatar.png" />
+    </div>
+
+    <div style="padding-left:20px;padding-right:20px;margin-top: 50px;">
+        <div class="card mt-2" style="border-radius:8px;background-color:#FFF2EE">
+            <div class="card-body" style="padding-left: 8px;margin-top: 22px;">
+                <div class="text-center">
+                    @*<h4 style="font-size:13px;font-weight:400;color:rgba(102, 102, 102, 1)">নাম নেই</h4>*@
+                    <h5 class="tobng" style="font-size:13px;font-weight:400;color:rgba(102, 102, 102, 1)">@ViewBag.Msisdn</h5>
+                </div>
+
+@*                <div class="text-center" style="margin-top:50px">
+                    <p style="color:black;font-size:14px;font-weight:400;margin-bottom: 3px; margin-left: 5px;    margin-top: 20px;
+    font-weight: 400;">অ্যাচিভমেন্ট</p>
+                </div>*@
+
+                <a style="text-decoration: none;">
+                    <div class="row boxBasic2">
+                        <div class="col-2 p-0">
+                            <img style="height:40px;;margin-top:-1px" src="~/pagecontents/others/pointbest.png" />
+                        </div>
+                        <div class="col-6" style="padding-top: 8px;color: white;font-size: 14px;    padding-left: 5px;">
+                            আজকের সর্বোচ্চ
+                        </div>
+                        <div class="col-4" style="text-align:right;margin:auto">
+                            <span class="tobng" style="font-weight:600;font-size:16px;color:white"><span>@ViewBag.totalScore</span></span>
+                        </div>
+                    </div>
+                </a>
+
+                <a style="text-decoration: none;">
+                    <div class="row boxBasic">
+                        <div class="col-2 p-0">
+                            <img style="height:35px;;margin-top:-1px" src="~/pagecontents/others/ajkerppoint.png" />
+                        </div>
+                        <div class="col-6" style="padding-top: 8px;color: rgba(102, 102, 102, 1);font-size: 12px;    padding-left: 5px;">
+                            আজকের কুইজ স্কোর
+                        </div>
+                        <div class="col-4" style="text-align:right;margin:auto">
+                            <span class="tobng" style="font-weight:600;font-size:14px;color:#EC0613">@ViewBag.score</span>
+                        </div>
+                    </div>
+                </a>
+                <a style="text-decoration: none;">
+                    <div class="row boxBasic">
+                        <div class="col-2 p-0">
+                            <img style="height:35px;;margin-top:-1px" src="~/pagecontents/others/ajkerbesttime.png" />
+                        </div>
+                        <div class="col-6" style="padding-top: 8px;color: rgba(102, 102, 102, 1);font-size: 12px;    padding-left: 5px;">
+                            আজকের কুইজের বেস্ট টাইম
+                        </div>
+                        <div class="col-4" style="text-align:right;margin:auto">
+                            <span class="tobng" style="font-weight:600;font-size:14px;color:#EC0613"><span>@ViewBag.timeInSeconds</span> সেঃ</span>
+                        </div>
+                    </div>
+                </a>
+                <a style="text-decoration: none;">
+                    <div class="row boxBasic">
+                        <div class="col-2 p-0">
+                            <img style="height:35px;;margin-top:-1px" src="~/pagecontents/others/ajkerpredict.png" />
+                        </div>
+                        <div class="col-6" style="padding-top: 8px;color: rgba(102, 102, 102, 1);font-size: 12px;    padding-left: 5px;">
+                            আজকের প্রেডিক্ট স্কোর
+                        </div>
+                        <div class="col-4" style="text-align:right;margin:auto">
+                            <span class="tobng" style="font-weight:600;font-size:14px;color:#EC0613"><span>@ViewBag.predictionWins</span></span>
+                        </div>
+                    </div>
+                </a>
+
+                <a style="text-decoration: none;">
+                    <div class="row boxBasic">
+                        <div class="col-2 p-0">
+                            <img style="height:35px;;margin-top:-1px" src="~/pagecontents/others/pool.png" />
+                        </div>
+                        <div class="col-6" style="padding-top: 8px;color: rgba(102, 102, 102, 1);font-size: 12px;    padding-left: 5px;">
+                            আজকের ট্রিভিয়া স্কোর
+                        </div>
+                        <div class="col-4" style="text-align:right;margin:auto">
+                            <span class="tobng" style="font-weight:600;font-size:14px;color:#EC0613">@ViewBag.poleScore</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" style="padding-left: 30px;padding-right: 20px;margin-top: 20px;padding-bottom: 20px;">
+    @*<img src="~/pagecontents/banner/bottom_banner_3.jpeg" style="border-top-left-radius: 13px;border-top-right-radius: 20px;border-bottom-right-radius: 20px;border-bottom-left-radius: 13px;" />*@
+    <a href="https://nagad.com.bd/bn/campaign/?offer=welcome-offer">
+        <img src="~/pagecontents/banner/bottom_banner_3.jpeg" style="width:100%; border-radius: 8px;" />
+    </a>
+</div>
+
+<div class="row g-2" style="padding: 23px 25px;text-align: center;font-size: 10px;font-weight: 400;background-color: #EEEEEE;">
+    <div class="col">
+        <span>
+            Powered by
+            <img src="~/pagecontents/icon/shadhin_quiz_icon.svg" />
+            <b>Shadhin Quiz</b>. <b>Nagad</b> is a sponsor & promoter only.
+        </span>
+    </div>
+</div>
+@*<div style="padding-left:20px;padding-right:20px;margin-top: 10px;padd;padding-bottom:70px">
+    <div class="card mt-2" style="border-radius:8px;background-color:#FFF2EE">
+        <div class="card-body" style="padding-left: 8px;padding-top: 0px;padding-bottom:0px">
+            <a asp-action="Logout" asp-controller="SignIn" style="text-decoration: none;">
+                <div class="row boxbtom">
+                    <div class="col-2 p-0">
+                        <img style="height:40px;;margin-top:-1px" src="~/pagecontents/icon/logout.png" />
+                    </div>
+                    <div class="col-10" style="padding-top: 8px;color: rgba(255, 51, 51, 1);font-size: 14px;">
+                        সাইন আউট
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>*@
+
+
+
+
+<div class="row m-0 bottom_nav fixed-bottom">
+    <div class="col-4" style="text-align:center">
+        <a asp-action="index" asp-controller="Home" style="text-decoration:none">
+            <img class="btmImg" src="~/pagecontents/bottomnav/home.svg" />
+            <p class="btmnavText">হোম</p>
+        </a>
+    </div>
+    <div class="col-4" style="text-align:center">
+        <a asp-action="index" asp-controller="Leaderboard" style="text-decoration:none">
+            <img class="btmImg" src="~/pagecontents/bottomnav/leaderboard.svg" />
+            <p class="btmnavText">লিডারবোর্ড</p>
+        </a>
+    </div>
+    <div class="col-4" style="text-align:center">
+        <a asp-action="Details" asp-controller="Profile" style="text-decoration:none">
+            <img class="btmImg" src="~/pagecontents/bottomnav/profile_hg.svg" />
+            <p class="btmnavTextSelected">প্রোফাইল</p>
+        </a>
+    </div>
+</div>
+
+
+

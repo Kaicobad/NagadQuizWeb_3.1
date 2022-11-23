@@ -1,0 +1,146 @@
+﻿@{
+    Layout = "_LayoutPole";
+    int indx = 0;
+    string displayValue = "";
+    var questions = ViewBag.QuestionOptions;
+    var questionlength = questions.Count;
+}
+
+<div class="container-fluid" style="background-color#E5E5E5">
+    @*Card*@
+
+
+    @foreach (var item in questions)
+    {
+        indx++;
+        @if (indx > 1)
+        {
+            displayValue = "none";
+        }
+        <div id="predictGamePage_@indx" style="display:@displayValue">
+            <div class="card" style="width: 100%;border-top-left-radius: 25px;border-top-right-radius: 25px;">
+                <div class="poleImage">
+                    @*<img src="~/pagecontents/landingpage/questionstodayspole.svg" class="card-img-top" alt="...">*@
+                    <img src="~/pagecontents/landingpage/football-poll-bangla.jpg" class="card-img-top" style="border-top-left-radius: 12px;
+    border-top-right-radius: 12px;" />
+                </div>
+                <div class="matchagainst" style="margin-left: 6px;margin-top: 6px;color: #666666;">
+                    <h6>
+                        Match Predict @item.TeamA vs @item.TeamB
+                    </h6>
+                </div>
+                <div class="ques" style="font-weight: 400;font-size: 18px;line-height: 24px;align-items: center;color: #000000;">
+                    <h2 style="margin-left: 6px;font-weight: 400;
+    font-size: 18px;">
+                        @item.EventName
+                    </h2>
+                </div>
+            </div>
+            <div class="option" style="padding: 0px; width: 100%; height: 100px;margin-top: 6px;">
+                <div class="form-check1" style="margin-bottom: 7px;align-items: center;padding: 12px 20px;width: 100%;height: 48px;background: #FFFFFF;box-shadow: 1px 2px 6px rgb(0 0 0 / 5%);border-radius: 8px;">
+                    <input class="form-check-input" type="radio" name="Radios" id="teamARadio" value=@item.TeamA_Id>
+                    <label class="form-check-label" for="exampleRadios2">
+                        @item.TeamA
+                    </label>
+                </div>
+                <div class="form-check2" style="margin-bottom: 8px;align-items: center;padding: 12px 20px;width: 100%;height: 48px;background: #FFFFFF;box-shadow: 1px 2px 6px rgb(0 0 0 / 5%);border-radius: 8px;">
+                    <input class="form-check-input" type="radio" name="Radios" id="teamBRadio" value=@item.TeamB_Id>
+                    <label class="form-check-label" for="exampleRadios2">
+                        @item.TeamB
+                    </label>
+                </div>
+                <div class="form-check2" style="align-items: center;padding: 12px 20px;width: 100%;height: 48px;background: #FFFFFF;box-shadow: 1px 2px 6px rgb(0 0 0 / 5%);border-radius: 8px;">
+                    <input class="form-check-input" type="radio" name="Radios" id="teamBRadio" value=0>
+                    <label class="form-check-label" for="exampleRadios2">
+                       ড্র
+                    </label>
+                </div>
+            </div>
+            <div class="vote" style="margin-top: 38px;">
+                <div class="d-grid gap-2" style="margin-top: 30%;">
+                    <button onclick="gotoNextQuestion(@indx,@questionlength)" class="btn btn-light" type="button" style="border: 1px solid #E5E5E5;">বাদ দিন</button>
+                    <button onclick="SubmitPole(@item.EventId,@indx,@questionlength)" class="btn btn-danger" type="button">
+                        ভোট
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    }
+
+</div>
+
+
+@section Scripts
+    {
+
+    <script>
+
+        function SubmitPole(eventId, index, questionlength) {
+            var radioValue = document.querySelector('input[name="Radios"]:checked').value;
+            var nextIndex = index + 1;
+            $.ajax({
+                method: "POST",
+                url: "SubmitPrediction",
+                data: {
+                    'PredictedWinningTeamId': radioValue,
+                    'EventId': eventId
+                },
+                success: function (response) {
+                    if (response = "Success") {
+                        $('#predictGamePage_' + index).hide();
+
+                        $('#predictGamePage_' + nextIndex).show();
+                        if (nextIndex > questionlength) {
+                            swal({
+                                title: "ধন্যবাদ!",
+                                text: "প্রেডিক্ট অ্যান্ড উইন-এ অংশগ্রহণ করার জন্য। আপনি বিজয়ী নির্বাচিত হলে আপনার প্রোফাইলে দেখতে পারবেন।",
+                                type: "success",
+                                timer: 2000,
+                                showConfirmButton: false
+                            }, function () {
+                                var url = '@Url.Action("Index", "Home")';
+                                window.location.href = url;
+                            });
+
+                        }
+                        else {
+
+                            $('#predictGamePage_' + index).hide();
+
+                            $('#predictGamePage_' + nextIndex).show();
+                        }
+                    }
+                },
+                error: function () {
+                },
+                complete: function () {
+                }
+            });
+
+        }
+        function gotoNextQuestion(index, length) {
+            var nextIndex = index + 1;
+            if (index == length) {
+                var url = '@Url.Action("Index", "Home")';
+                window.location.href = url;
+            } else {
+                $('#predictGamePage_' + index).hide();
+                $('#predictGamePage_' + nextIndex).show();
+            }
+
+
+
+            //if (nextIndex > index){
+            //    var url = '@Url.Action("Index", "Home")';
+            //         window.location.href = url;
+            //}
+            //if(nextIndex = index){
+            //     var url = '@Url.Action("Index", "Home")';
+            //     window.location.href = url;
+            //}
+        }
+
+    </script>
+
+}

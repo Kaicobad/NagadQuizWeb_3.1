@@ -1,0 +1,169 @@
+﻿<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+<div class="container-fluid" style="margin-top:80px;">
+    <div class="text-center" style="padding:20px 15px">
+        <img src="~/pagecontents/others/foodball star icon_genarel.png" />
+        <h4 class="mt-3" style="font-size:20px;color:rgba(236, 6, 19, 1);font-weight:600">ফুটবল স্টার</h4>
+        <p style="font-size:14px;color:rgba(102, 102, 102, 1);margin-top:5px">
+            বিশ্বকাপের উন্মাদনায় আপনাকে    স্বাগতম। নগদ একাউন্ট নাম্বার দিয়ে খেলা শুরু করুন।
+        </p>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-default" style="background-color: white;">
+                    <img src="~/pagecontents/icon/call.svg" />
+                </span>
+            </div>
+            <input id="phnNumber" onkeypress="return isNumber(event)" placeholder="01*********" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+
+
+        </div>
+        <div class="captchaClas">
+            <div class="g-recaptcha"
+                 data-sitekey="6LfD4CEjAAAAAHIlRz9K6-LEnEUSVtFUaOf5h6FL">
+             </div>
+        </div>
+
+        <p id="errmsg" style="display:none;text-align: center;margin-bottom: 10px;color: indianred;"></p>
+        <a onclick="MakeLogin()"
+           style="background-color:rgba(236, 6, 19, 1);
+            color:white;
+            padding:10px;border-radius:8px;
+            width:100%"
+           class="btn mt-3">শুরু করুন</a>
+    </div>
+    <div class="text-center">
+        উপরের বাটন ক্লিক করার মাধ্যেমে <a data-bs-toggle="modal" data-bs-target="#exampleModal" style="text-decoration: underline;color: gray;"><b>শর্তাবলি</b></a> তে সম্মতি দিচ্ছি
+
+        @* <a href="#" id="TC" style="text-decoration: underline;color: gray;">
+        উপরের বাটন ক্লিক করার মাধ্যেমে শর্তাবলি তে সম্মতি দিচ্ছি
+        </a>*@
+
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">ক্যাম্পেইন শর্তাবলী:</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>১। নগদ গ্রাহকরা নগদ অ্যাপের মাধ্যমে &lsquo;Football Star&rsquo; In-app game &ndash;এ অংশগ্রহণ করে, সর্বোচ্চ স্কোরার প্রথম ১০০ জন অংশগ্রহণকারী প্রতিদিন ১০০ টাকা বোনাস উপভোগ করতে পারবেন। এছাড়াও, গেমের সর্বোচ্চ স্কোরার প্রতি সপ্তাহে ১০০০০ টাকা বোনাস মেগা গিফট জেতার যোগ্য হবেন।</p>
+                    <p>&lsquo;Football Star&rsquo; In-app game&rsquo; শর্তাবলী:</p>
+                    <p>&bull;&lsquo;Football Star&rsquo; In-app game&rsquo; গেম-এ অংশগ্রহণ করার জন্য &lsquo;শুরু করুন&rsquo; বাটনটি ক্লিক করে আমাদের এই শর্তাবলীসমুহতে আপনার সম্মতি প্রদান করেছেন।</p>
+                    <p>&bull;নগদ&rsquo; আপনার প্রদেয় সকল তথ্যের সম্পূর্ণ গোপনীয়তা নিশ্চিত করবে।&nbsp;</p>
+                    <p>&bull;গেমটি শুরু করার পর, অংশগ্রহণকারীকে গেমের ৩টি অংশে (কুইজ, প্রেডিকশন &amp; উইন এবং পোল) অংশগ্রহণ করতে হবে।</p>
+                    <p>ক) কুইজঃ</p>
+                    <p>সেশনঃ ২২ সেকেন্ড&nbsp;</p>
+                    <p>প্রতি সেশনে ৫টি প্রশ্ন</p>
+                    <p>প্রতি প্রশ্নে ৫ পয়েন্ট&nbsp;</p>
+                    <p>ভুল উত্তরের জন্য সেশন শেষ হবে না</p>
+                    <p>রাত ১২ টায় &nbsp;অংশগ্রহণকারীর প্রোফাইলে সেরা কুইজের স্কোর দেখানো হবে</p>
+                    <p>খ) প্রেডিকশন &amp; উইন</p>
+                    <p>অংশগ্রহণকারী ম্যাচের ১ ঘন্টা আগে থেকে প্রেডিকশন শুরু করতে পারে</p>
+                    <p>প্রতিটি সঠিক প্রেডিকশন ১০ পয়েন্ট</p>
+                    <p>চূড়ান্ত স্কোর পরের দিন সকাল ১০টায় অংশগ্রহণকারীর প্রোফাইলে দেখানো হবে&nbsp;</p>
+                    <p>পরের দিন কোনো ম্যাচ না থাকলে, প্রেডিকশন করা যাবে না</p>
+                    <p>গ) পুল &nbsp;</p>
+                    <p>অংশগ্রহণকারীদেরকে &nbsp;নগদ সম্পর্কিত ৩টি নির্দিষ্ট প্রশ্নের উত্তর দিতে হবে</p>
+                    <p>প্রতি প্রশ্নে ১ পয়েন্ট &nbsp;</p>
+                    <p><br></p>
+                    <p>প্রতিদিন সর্বোচ্চ ১০০ জন স্কোরার পাবেন ১০০ টাকা বোনাস। বিজয়ীরা এই বোনাস পাবেন তাদের সচল &lsquo;নগদ&rsquo; একাউন্টে পরবর্তী ৩ (তিন) কার্যদিবসের মধ্যে।&nbsp;</p>
+                    <p>একজন প্রতিযোগী যত ইচ্ছা ততবার গেম খেলতে পারবেন। তবে পুরষ্কার জেতার জন্য তার ঐ দিনের সেরা স্কোরকেই বিবেচনা করা হবে।&nbsp;</p>
+                    <p>একজন বিজয়ী ক্যাম্পেইন সময়সীমার মধ্যে একবারই ১০০ টাকা বোনাস জিততে পারবেন।&nbsp;</p>
+                    <p>সপ্তাহের একজন টপ স্কোরার মেগা গিফট হিসাবে ১০০০০ টাকা বোনাস জেতার জন্য বিবেচিত হবে। এই পুরষ্কারের জন্য তাকে ক্যাম্পেইন এর শর্ত পূরণ করতে হবে। এই পুরষ্কার পুরো ক্যাম্পেইনে একবারই জিততে পারবেন।&nbsp;</p>
+                    <p>দুইজন একই স্কোরের প্রতিযোগীর ক্ষেত্রে বিজয়ী নির্ধারিত হবে প্রথমত বেস্ট স্কোর, দ্বিতীয়ত বেস্ট স্কোরের জন্য নেওয়া সর্বনিম্ন সময় এবং সর্বোপরি তার খেলার সময় (সর্ব প্রথম) এর উপর।&nbsp;</p>
+                    <p>নগদ যদি জানতে পারে যদি কোন অংশগ্রহণকারী জালিয়াতি বা অসততা, অসদুপায় ইত্যাদির মাধ্যমে জয়ী হয়, তবে বিজয়ীকে অযোগ্য ঘোষণা করার অধিকার সংরক্ষণ করে। নগদ এর কোন কর্মচারি/কর্মকর্তা/সম্পৃক্ত কেউ মেগা গিফট জিততে পারবেননা।&nbsp;</p>
+                    <p>মেগা গিফট বিজয়ীর নগদ অ্যাকাউন্ট (সচল ও ফুল প্রোফাইল) এবং জাতীয় পরিচয়পত্র দিয়ে যাচাই করা হবে।</p>
+                    <p>২। এই ক্যাম্পেইন উপভোগ করতে হলে এবং গেম &ndash;এ অংশগ্রহন করার জন্য আপনার &lsquo;নগদ&rsquo;-এর অ্যাকাউন্টটি অবশ্যই সচল থাকতে হবে। &nbsp;</p>
+                    <p>৩। এই &nbsp;ক্যাম্পেইনটি ২০ নভেম্বর, ২০২২ থেকে ১৮ ডিসেম্বর, ২০২২ পর্যন্ত চলতে থাকবে ।</p>
+                    <p>৪। নগদ-এর অভ্যন্তরীণ নীতি এবং ক্যাম্পেইনের শর্তাবলী সাপেক্ষে &apos;মেগা গিফট&apos; বিজয়ী চূড়ান্ত নির্বাচন করা হবে। &nbsp;</p>
+                    <p>৫। &lsquo;নগদ&rsquo; এই শর্তাবলী পরিবর্তন/পরিবর্ধন করার কিংবা কোন প্রকার পূর্ব ঘোষণা ছাড়াই পুরো ক্যাম্পেইনটি বাতিল করার অধিকার সংরক্ষণ করে।&nbsp;</p>
+                    <p>৬। এই ক্যাম্পেইন সংক্রান্ত যে কোন সিদ্ধান্ত &lsquo;নগদ&rsquo; কর্তৃক সংরক্ষিত এবং নগদ-এর সিদ্ধান্তই চূড়ান্ত বলে গণ্য হবে।</p>
+                    <p>৭। &lsquo;নগদ&rsquo; ঘোষণা করে যে,&nbsp;</p>
+                    <p>ক) নগদ বা নগদের কোন প্রতিনিধি, কোন সময়েই গ্রাহকের কাছে তার অ্যাকাউন্টের ওয়ান টাইম পাসওয়ার্ড (ওটিপি) কিংবা পার্সোনাল আইডেন্টিফিকেশন নাম্বার (পিন) নাম্বার চাইবে না।&nbsp;</p>
+                    <p>খ) ইহা গ্রাহককে কোন প্রকার লেনদেন করতে বলবে না।&nbsp;</p>
+                    <p>গ) ইহা গ্রাহককে শুধুমাত্র ১৬১৬৭ বা ০৯৬ ০৯৬ ১৬১৬৭ নাম্বার থেকেই যোগাযোগ করবে। এই ক্যাম্পেইন এর আওতায় নগদের মাধ্যমে টাকা প্রদানের ক্ষেত্রে যে কোন প্রকার বিভ্রান্তি বা দ্বিধা নিশ্চিত হবার জন্য গ্রাহক ১৬১৬৭ অথবা ০৯৬ ০৯৬ ১৬১৬৭ নাম্বারে কল করতে পারেন ।</p>
+                    <p>ঘ) উপরোক্ত ঘোষণাসমূহের পরও তৃতীয় কোন পক্ষের কোন কার্যের জন্য গ্রাহকের কোন ক্ষতি সাধিত হলে নগদ কর্তৃপক্ষ দায়ী থাকবে না।&nbsp;</p>
+                    <p>ঙ) এই ক্যাম্পেইন সংক্রান্ত যে কোন প্রকার মতবিরোধ দেখা দিলে গ্রাহক নগদের হটলাইন নাম্বারে (১৬১৬৭ অথবা ০৯৬ ০৯৬ ১৬১৬৭) অবহিত করবেন।&nbsp;</p>
+                    <p>&nbsp;চ) এই গেমটি Shadhin Quiz দ্বারা তৈরি এবং পরিচালিত, &lsquo;নগদ&rsquo; শুধুমাত্র স্পনসর এবং প্রোমোটার হিসাবে কাজ করছে।&nbsp;</p>
+                    <p>ছ) উক্ত শর্তাবলী বাংলা এবং ইংরেজি উভয় ভাষায় উল্লেখিত হবে এবং বাংলা ও ইংরেজির মধ্যে কোন বিষয় সংঘর্ষ হলে তখন ইংরেজি ভাষা প্রাধান্য পাবে।</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function validation() {
+        let msisdn = $('#phnNumber').val();
+        let fthree = msisdn.substring(0, 3)
+
+        if (msisdn == "" || msisdn == undefined || isNaN(msisdn)) {
+            $('#errmsg').show();
+            $('#errmsg').text("সঠিক মোবাইল নাম্বার প্রদান করুন ");
+            return false;
+        }
+        else if ((fthree != "013") && fthree != "014" && fthree !="015" && fthree != "016" && fthree != "017" && fthree != "018" && fthree != "019") {
+            $('#errmsg').show();
+            $('#errmsg').text("সঠিক মোবাইল নাম্বার প্রদান করুন ");
+        }
+        else if (msisdn.length != 11) {
+            $('#errmsg').show();
+            $('#errmsg').text("আপনার ১১ ডিজিটের সঠিক নাম্বারটি প্রদান করুন");
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    function MakeLogin() {
+        $('#errmsg').hide();
+        if (!validation()) {
+            return;
+        }
+        //var capdata = grecaptcha.getResponse()
+        //var capval = validateCP(capdata)
+        //if (capdata == "") {
+        //    $('#errmsg').show();
+        //    $('#errmsg').text("Captcha validation failed")
+        //    return;
+        //}
+        let msisdn = $('#phnNumber').val();
+        var url = '@Url.Action("CreateUser", "Signin")';
+        url += '?mobileNumber=' + msisdn;
+        window.location.href = url;
+    }
+
+    function validateCP(capdata) {
+        var result = false;
+        $.ajax({
+            method: "GET",
+            async: false,
+            url: "SignIn/validateCp",
+            data: { capresponse: capdata },
+            success: function (response) {
+                result =  response;
+                console.log(result);
+            },
+            error: function () {
+              
+            }
+        });
+        return result;
+    }
+    var myModal = document.getElementById('modal fade')
+        //var myInput = document.getElementById('myInput')
+
+        //myModal.addEventListener('shown.bs.modal', function () {
+        //    myInput.focus()
+        //})
+</script>
+

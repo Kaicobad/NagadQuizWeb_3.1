@@ -1,0 +1,136 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "_LayoutNagadPoll";
+    var nagadPoles = ViewBag.NagadPoles;
+    int indx = 0;
+    string displayValue = "";
+
+}
+<style>
+    .btn-lg {
+        border-radius: 8px;
+        height: 54px;
+        padding: 15px 15px 15px 15px;
+    }
+
+        .btn-lg:hover {
+            background-color: #EC0613;
+            color: white;
+            border: #B8B8B8;
+        }
+
+</style>
+@foreach (var items in nagadPoles)
+{
+    indx++;
+    if (indx > 1)
+    {
+        displayValue = "none";
+    }
+    <div id="poll_@indx" style="display:@displayValue">
+        <div class="card mb-3" style="border: none;background-color: #F8F8F8;width: 100%;margin-top: 2%;">
+
+            <img src="~/pagecontents/banner/nagad_poll_trivia_banner.jpg" class="card-img-top" style="border-radius: 12px;
+    height: 100%;
+    width: 100%;">
+            <div class="card-body" style="padding: 12px 0px 12px 0px;">
+                <h5 class="card-title" style="font-size: 16px;
+    font-weight: 600; text-align:center ; margin-top: 5px;">
+                    @items.Question
+                </h5>
+                @*<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>*@
+            </div>
+        </div>
+        
+        <div class="d-grid gap-3">
+            @foreach (var item in @items.Choices)
+            {
+            <div class="p-2" style="background: #FFFFFF;box-shadow: 1px 2px 6px rgb(0 0 0 / 5%);border-radius: 8px;height: 48px;">
+                <div class="form-check" style="padding-top: 5px;">
+                        <input class="form-check-input" type="radio" name="polChoiseName" id="pollChoiseId" value="@item.choiceId">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        @item.description
+                    </label>
+                </div>
+            </div>
+            }
+        </div>
+        <div class="d-grid" style="position: relative;margin-top: 13%;">
+            <a href="#" onclick="SubmitNagadPoll(@items.QuestionId,@indx,@nagadPoles.Count)" class="btn btn-secondary btn-lg" tabindex="-1" role="button" aria-disabled="true">সাবমিট</a>
+        </div>
+    </div>
+    
+}
+
+@section Scripts
+    {
+    <script>
+        function SubmitNagadPoll(questionId, index, questionlength) {
+            var radioValue = document.querySelector('input[name="polChoiseName"]:checked').value;
+            var nextIndex = index + 1;
+            $.ajax({
+                method: "POST",
+                url: "SubmitNagadPoll",
+                data: {
+                    'questionId': questionId,
+                    'choiceId': radioValue
+                },
+                success: function (response) 
+                {
+                    if (response = "Success") {
+                        $('#poll_' + index).hide();
+
+                        $('#poll_' + nextIndex).show();
+                        if (nextIndex > questionlength) {
+                            swal({
+                                title: "ধন্যবাদ!",
+                                text: "নগদ ট্রিভিয়া-এ অংশগ্রহণ করার জন্য।",
+                                type: "success",
+                                timer: 2000,
+                                showConfirmButton: false
+                            }, function () {
+                                var url = '@Url.Action("Index", "Home")';
+                                window.location.href = url;
+                            });
+
+                        }
+                        else {
+
+                            $('#poll_' + index).hide();
+
+                            $('#poll_' + nextIndex).show();
+                        }
+                    }
+                },
+                error: function () {
+                },
+                complete: function () {
+
+
+                }
+            });
+        }
+
+        function cancelGame() {
+            swal({
+                title: "আপনি কি শেষ করতে চান??",
+                type: "warning",
+                showCancelButton: true,
+                cancelButtonText: "বাতিল",
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "শেষ",
+                closeOnConfirm: false
+            },
+                function () {
+                    window.location.href = 'GotoHome'
+                });
+        }
+
+
+    </script>
+    }
+

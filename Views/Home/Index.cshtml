@@ -1,0 +1,224 @@
+﻿<div class="landingPage">
+    <div class="gradiant" style="margin-top:10px">
+        <div class="container">
+            <div class="row" style="padding-left: 10px;padding-right: 8px;">
+                <div class="col-6" style="margin:auto">
+                    <div>
+                        <span class="tobng" style="margin:auto;font-size:18px;font-weight:600">
+                            @ViewBag.mobile
+                        </span>
+                    </div>
+
+                    <span style="font-size: 12px;
+                    color: gray;" class="tobng" id="todaysBestScore"></span>
+                </div>
+                <div class="col-6 text-end" style="margin:auto">
+                    <a asp-action="Details" asp-controller="Profile"><img height="40px" src="~/pagecontents/profile/avatarhome.png" /></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="bannerdiv" style="padding-left: 5px;padding-right: 5px;margin-top:15px">
+
+        <div class="row  billboard" style="background-position-x:center;padding-bottom: 15px;">
+            <div class="fale" style="margin-top: 110%;">
+            </div>
+
+            <div class="row align-items-end">
+                <a asp-action="Index" asp-controller="QuizQuestion" style="text-decoration: none;">
+                    <div class="row quizzdiv" style="margin-top:7px !important">
+                        <div class="col-2 p-0">
+                            <img style="height:40px;;margin-top:-1px" src="~/pagecontents/landingpage/football.png" />
+                        </div>
+                        <div class="col-6 textqz">
+                            কুইজ
+                        </div>
+                        <div class="col-4" style="text-align:right;margin:auto">
+                            <button asp-action="Index" asp-controller="QuizQuestion" type="submit" class="btn btn-sm btn-danger"
+                                    style="border-radius: 8px; text-align: center;
+                                    font-family: sans-serif; font-size: 10px;   float: right;
+                                    margin-top: 7%;    padding: 5px 20px;">
+                                খেলুন
+                            </button>
+                        </div>
+                    </div>
+                </a>
+
+                <a asp-action="PoleQuestion" asp-controller="QuizQuestion" style="text-decoration: none;margin-top:5px">
+                    <div class="row quizzdiv" style="margin-top:7px !important">
+                        <div class="col-2 p-0">
+                            <img style="height:40px;;margin-top:-1px" src="~/pagecontents/landingpage/predictIc.png" />
+                        </div>
+                        <div class="col-7 textqz">
+                            প্রেডিক্ট অ্যান্ড উইন
+                        </div>
+                        <div class="col-3" style="text-align:right;margin:auto">
+                            <button asp-action="PoleQuestion" asp-controller="QuizQuestion" type="submit" class="btn btn-sm btn-danger"
+                                    style="border-radius: 8px; text-align: center;
+                                    font-family: sans-serif; font-size: 10px;   float: right;
+                                    margin-top: 7%;    padding: 5px 20px;">
+                                খেলুন
+                            </button>
+                        </div>
+                    </div>
+                </a>
+                <a asp-action="NagadPoll" asp-controller="QuizQuestion" style="text-decoration: none;margin-top:5px">
+                    <div class="row quizzdiv" style="margin-top:7px !important">
+                        <div class="col-2 p-0">
+                            <img style="height:40px;;margin-top:-1px" src="~/pagecontents/landingpage/nagad poll.svg" />
+                        </div>
+                        <div class="col-7 textqz">
+                            নগদ ট্রিভিয়া
+                        </div>
+                        <div class="col-3" style="text-align:right;margin:auto">
+                            <button asp-action="NagadPoll" asp-controller="QuizQuestion" 
+                            type="submit" class="btn btn-sm btn-danger"style="border-radius: 8px; 
+                            text-align: center;font-family: sans-serif; font-size: 10px;   
+                            float: right;margin-top: 7%;    padding: 5px 20px;">
+                                খেলুন
+                            </button>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<div class="row" style="margin-top: 20px; margin-left: 6px; margin-right: 6px;    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 20px;">
+    @*<h4 style="font-size:16px;padding-left:0px">ফুটবল স্টার মেগা কুইজ!</h4>*@
+    <div class="card mt-2" style="border-radius:8px;">
+        <div class="card-body" style="padding-left: 8px;">
+            <div class="row">
+                <div class="col-1"><img style="height: 20px;" src="~/pagecontents/icon/time.svg" /></div>
+                <div class="col-11">
+                    <p style="margin-left: 12px;font-weight:400;margin-bottom: 0px;">কুইজ খেলার সময়ঃ ২২ সেকেন্ড  </p>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-1">
+                    <img style="height: 20px;" src="~/pagecontents/icon/gift.svg" />
+
+                </div>
+                <div class="col-11">
+                    <p style="margin-left: 12px;font-weight:400;margin-bottom: 0px;">
+                        ডেইলি পুরষ্কারঃ প্রতিদিনের টপ ১০০ স্কোরার পাবেন ১০০ টাকা বোনাস
+                    </p>
+                </div>
+                <span>
+               
+                </span>
+            </div>
+            <div class="row mt-3">
+
+                <div class="col-1">
+                     <img style="height: 20px;" src="~/pagecontents/icon/gift.svg" />
+                </div>
+                <div class="col-11">
+                    <p style="margin-left: 12px;font-weight:400;margin-bottom: 0px;">
+                        সপ্তাহের পুরষ্কারঃ  প্রতি সপ্তাহের ১জন টপ স্কোরার পাবেন ১০০০০ টাকা বোনাস
+
+                    </p>
+                </div>
+
+                <span>
+
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="padding:15px;margin-top:10px">
+@*    <p style="color:black;font-size:16px;font-weight:600;margin-bottom: 3px; margin-left: 5px;">নগদ অফার </p>*@
+    <div class="carousel">
+        <div>
+            <a href="https://nagad.com.bd/bn/campaign/?offer=welcome-offer" class="card" style="margin-right: 2%; border-radius: 15px;">
+                <img style="border-top-left-radius: 5%;border-top-right-radius: 5%;" src="~/pagecontents/nagadbanner/nagad_banner_2.jpeg" class="card-img-top" />
+            </a>
+        </div>
+        <div>
+            <a href="https://nagad.com.bd/bn/campaign/?offer=wedding-campaign" class="card" style="margin-right: 2%; border-radius: 15px;">
+                <img style="border-top-left-radius: 5%;border-top-right-radius: 5%;" src="~/pagecontents/nagadbanner/nagad_banner_1.jpeg" class="card-img-top" />
+
+            </a>
+        </div>
+
+        <div>
+            <a href="https://nagad.com.bd/bn/campaign/?offer=labher-ghonta-10tk-offer" class="card" style="margin-right: 2%; border-radius: 15px;">
+                <img style="border-top-left-radius: 5%;border-top-right-radius: 5%;" src="~/pagecontents/nagadbanner/nagad_banner_3.jpeg" class="card-img-top" />
+            </a>
+        </div>
+        @*<div>
+            <a href="https://nagad.com.bd/" class="card" style="margin-right: 2%; border-radius: 15px;">
+                <img style="border-top-left-radius: 5%;border-top-right-radius: 5%;" src="~/pagecontents/nagadbanner/bannerslide1.png" class="card-img-top" />
+            </a>
+        </div>*@
+
+    </div>
+</div>
+
+<div class="row g-2" style="padding: 13px 25px 13px 25px;text-align: center;font-size: 10px;font-weight: 400;background-color: #EEEEEE;">
+    <div class="col">
+        <span>
+            Powered by
+            <img src="~/pagecontents/icon/shadhin_quiz_icon.svg" />
+            <b>Shadhin Quiz</b>. <b> Nagad</b> is a sponsor & promoter only.
+        </span>
+    </div>
+</div>
+
+<div class="row m-0 bottom_nav fixed-bottom">
+    <div class="col-4" style="text-align:center">
+        <a asp-action="index" asp-controller="Home" style="text-decoration:none">
+            <img class="btmImg" src="~/pagecontents/bottomnav/home_hg.svg" />
+            <p class="btmnavTextSelected">হোম</p>
+        </a>
+    </div>
+    <div class="col-4" style="text-align:center">
+        <a asp-action="index" asp-controller="Leaderboard" style="text-decoration:none">
+            <img class="btmImg" src="~/pagecontents/bottomnav/leaderboard.svg" />
+            <p class="btmnavText">লিডারবোর্ড</p>
+        </a>
+    </div>
+    <div class="col-4" style="text-align:center">
+        <a asp-action="Details" asp-controller="Profile" style="text-decoration:none">
+            <img class="btmImg" src="~/pagecontents/bottomnav/profile.svg" />
+            <p class="btmnavText">প্রোফাইল</p>
+        </a>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            ScoreDetails();
+        });
+        function ScoreDetails() {
+            $.ajax({
+                method: "GET",
+                async: true,
+                url: "Home/GetuserScore",
+                success: function (response) {
+                    if (response != null) {
+                        $('#todaysBestScore').text("আজকের পয়েন্ট : " + response.totalScore);
+                    }
+                },
+                complete: function () {
+                    $('.tobng').each(function () {
+                        var currentElement = $(this);
+                        var value = currentElement.html().trim(); // if it is an input/select/textarea field
+                        currentElement.html(convertToBanglanumber(value));
+
+                    });
+                }
+            });
+
+        }
+
+
+    </script>
+}

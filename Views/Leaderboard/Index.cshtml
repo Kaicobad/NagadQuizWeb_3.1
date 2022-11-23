@@ -1,0 +1,302 @@
+﻿
+<style>
+    html, body {
+        background-image: linear-gradient(180deg, #EC0613 0%, #F58220 100%);
+    }
+
+    .boxBasic {
+        padding: 10px;
+        border-radius: 8px;
+        background-color: white;
+        margin-left: 5px;
+        margin-right: 0px;
+        box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.05);
+        margin-top: 15px;
+    }
+
+    .boxBasicTop {
+        padding: 10px 0px;
+        margin-left: 14px;
+        margin-right: 15px;
+    }
+
+    .row > * {
+        padding-right: 0px;
+    }
+</style>
+
+
+<nav class="navbar navbar-light" style="background-color:white;padding:20px 15px;">
+    <div class="container-fluid" style="margin-left:-5px">
+        <a class="navbar-brand" asp-action="index" asp-controller="Home" style="width:100%;">
+            <h4 style="margin-top: 10px;  color: black; font-weight: 500;font-size:20px">
+                লিডারবোর্ড
+            </h4>
+        </a>
+    </div>
+</nav>
+
+
+<div id="bodyDiv" style="padding-top: 30px;padding-bottom:20px">
+    <div class="container-fluid mt-2">
+
+        <div class="row" style="border-radius: 10px;background-color:#CA0D11;margin-right: 10px;margin-left:10px;margin-top:10px">
+            <div class="col-4 text-center" id="yesterStyle">
+                <a onclick="getPreviousDay()" id="yesterdayBtn" class="but-border btn btn-block"
+                   style="width:100%;color:white"> গতকালের লিডারবোর্ড </a>
+            </div>
+            <div class="col-4 text-center" id="todayStyle"
+                 style="background-color:white;border-radius:10px">
+                <a onclick="gettoday()" id="todaybtn" class="but-border btn btn-block" style="width:100%;color:white;"> আজকের লিডারবোর্ড</a>
+            </div>
+            <div class="col-4 text-center" id="weeklyStyle">
+                <a onclick="getweekly()" id="weekbtn" class="but-border btn btn-block" style="width:100%;color:white"> সপ্তাহের সেরা দশ</a>
+            </div>
+
+        </div>
+
+        <div style="padding-left:10px;padding-right:10px;margin-top:20px">
+
+            <div id="nextLoader" style="text-align: center;display:none">
+                <div class="spinner-border" role="status" style="color:white">
+                </div>
+            </div>
+
+            <div class="card" style="border-radius:8px;background-color:#FFF2EE">
+
+
+                <a style="text-decoration: none;">
+                    <div class="row boxBasicTop">
+                        <div class="col-6" style="text-align:left;padding-top: 5px; margin: auto; color: #666666;font-size: 12px; ">
+                            নাম্বার
+                        </div>
+                        <div class="col-3" style="text-align: right;padding-top: 5px; margin: auto; color: #666666;font-size: 12px;">
+                            সময়
+                        </div>
+                        <div class="col-3 " style="text-align:right;padding-top: 5px; margin: auto; color: #666666;font-size: 12px;">
+                            <span class="tobng" style="padding:5px">স্কোর</span>
+                        </div>
+                    </div>
+                </a>
+
+                <div id="yeasterdayDiv" style="display:none;    margin-top: -10px;">
+                </div>
+                <div id="todayDiv" style="display:none;    margin-top: -10px;">
+                </div>
+
+                <div id="weeklyDiv" style="display:none;    margin-top: -10px;">
+                </div>
+
+
+            </div>
+        </div>
+        <div id="bannerDiv" style="padding-left: 10px; padding-right: 10px; margin-top: 10px;display:none">
+            <a href="https://nagad.com.bd/bn/campaign/?offer=welcome-offer">
+                <img src="~/pagecontents/banner/bottom_banner_3.jpeg" style="width:100%; border-radius: 8px;" />
+            </a>
+        </div>
+    </div>
+
+</div>
+
+<div id="bn2" class="row g-2" style="padding: 23px 25px;text-align: center;font-size: 10px;font-weight: 400;background-color: #EEEEEE;display:none">
+    <div class="col">
+        <span>
+            Powered by
+            <img src="~/pagecontents/icon/shadhin_quiz_icon.svg" />
+            <b>Shadhin Quiz</b>.  <b>Nagad</b> is a sponsor & promoter only.
+        </span>
+    </div>
+</div>
+
+
+<div class="row m-0 bottom_nav fixed-bottom">
+    <div class="col-4" style="text-align:center">
+        <a asp-action="index" asp-controller="Home" style="text-decoration:none">
+            <img class="btmImg" src="~/pagecontents/bottomnav/home.svg" />
+            <p class="btmnavText">হোম</p>
+        </a>
+    </div>
+    <div class="col-4" style="text-align:center">
+        <a asp-action="index" asp-controller="Leaderboard" style="text-decoration:none">
+            <img class="btmImg" src="~/pagecontents/bottomnav/leaderboard_hg.svg" />
+            <p class="btmnavTextSelected">লিডারবোর্ড</p>
+        </a>
+    </div>
+    <div class="col-4" style="text-align:center">
+        <a asp-action="Details" asp-controller="Profile" style="text-decoration:none">
+            <img class="btmImg" src="~/pagecontents/bottomnav/profile.svg" />
+            <p class="btmnavText">প্রোফাইল</p>
+        </a>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('#todayDiv').show();
+            $('#todaybtn').css('color', 'rgba(236, 6, 19, 1)');
+            gettoday();
+        });
+
+        function getPreviousDay() {
+            $('#todayDiv').hide();
+            $('#yeasterdayDiv').show();
+            $('#weeklyDiv').hide();
+
+            $('#yesterStyle').css('background-color', 'white');
+            $('#yesterStyle').css('border-radius', '10px');
+            $('#yesterdayBtn').css('color', 'rgba(236, 6, 19, 1)');
+
+            //hide
+            $('#todayStyle').css('background-color', '#CA0D11');
+            $('#todayStyle').css('border-radius', '0px');
+            $('#todaybtn').css('color', 'white');
+
+            $('#weeklyStyle').css('background-color', '#CA0D11');
+            $('#weeklyStyle').css('border-radius', '0px');
+            $('#weekbtn').css('color', 'white');
+            LoadYesterdayResult();
+        }
+
+        function gettoday() {
+            $('#todayDiv').show();
+            $('#yeasterdayDiv').hide();
+            $('#weeklyDiv').hide();
+
+
+
+            $('#todayStyle').css('background-color', 'white');
+            $('#todayStyle').css('border-radius', '10px');
+            $('#todaybtn').css('color', 'rgba(236, 6, 19, 1)');
+
+            //
+            $('#yesterStyle').css('background-color', '#CA0D11');
+            $('#yesterStyle').css('border-radius', '0px');
+            $('#yesterdayBtn').css('color', 'white');
+
+            $('#weeklyStyle').css('background-color', '#CA0D11');
+            $('#weeklyStyle').css('border-radius', '0px');
+            $('#weekbtn').css('color', 'white');
+
+            LoadTodaysdata();
+
+
+        }
+
+        function getweekly() {
+            $('#todayDiv').hide();
+            $('#yeasterdayDiv').hide();
+            $('#weeklyDiv').show();
+
+
+            $('#weeklyStyle').css('background-color', 'white');
+            $('#weeklyStyle').css('border-radius', '10px');
+            $('#weekbtn').css('color', 'rgba(236, 6, 19, 1)');
+
+            //
+            $('#yesterStyle').css('background-color', '#CA0D11');
+            $('#yesterStyle').css('border-radius', '0px');
+            $('#yesterdayBtn').css('color', 'white');
+
+            $('#todayStyle').css('background-color', '#CA0D11');
+            $('#todayStyle').css('border-radius', '0px');
+            $('#todaybtn').css('color', 'white');
+
+            LoadWeeklydata();
+
+        }
+
+
+        function LoadTodaysdata() {
+            $.ajax({
+                type: "GET",
+                async: true,
+                url: "Leaderboard/GetTodaysResult",
+                dataType: "html",
+                contentType: 'application/json; charset=utf-8',
+                beforeSend: function () {
+                    $('#bannerDiv').hide();
+                    $('#bn2').hide();
+                    $('#nextLoader').show();
+                },
+                success: function (data) {
+                    $('#todayDiv').empty();
+                    $('#todayDiv').html(data);
+                    $('.tobng').each(function () {
+                        var currentElement = $(this);
+                        var value = currentElement.html().trim();
+                        currentElement.html(convertToBanglanumber(value));
+                    });
+
+
+                },
+                complete: function () {
+                    $('#bannerDiv').show();
+                    $('#bn2').show();
+                    $('#nextLoader').hide();
+                }
+            });
+        }
+        function LoadYesterdayResult() {
+            $.ajax({
+                type: "GET",
+                async: true,
+                url: "Leaderboard/GetYesterdayResult",
+                dataType: "html",
+                contentType: 'application/json; charset=utf-8',
+                beforeSend: function () {
+                    $('#bannerDiv').hide();
+                    $('#bn2').hide();
+                    $('#nextLoader').show();
+                },
+                success: function (data) {
+                    $('#yeasterdayDiv').empty();
+                    $('#yeasterdayDiv').html(data);
+                    $('.tobng').each(function () {
+                        var currentElement = $(this);
+                        var value = currentElement.html().trim();
+                        currentElement.html(convertToBanglanumber(value));
+                    });
+
+
+                },
+                complete: function () {
+                    $('#bannerDiv').show();
+                    $('#bn2').show();
+                    $('#nextLoader').hide();
+                }
+            });
+        }
+        function LoadWeeklydata() {
+            $.ajax({
+                type: "GET",
+                async: true,
+                url: "Leaderboard/GetWeeklyResult",
+                dataType: "html",
+                contentType: 'application/json; charset=utf-8',
+                beforeSend: function () {
+                    $('#bannerDiv').hide();
+                    $('#bn2').hide();
+                    $('#nextLoader').show();
+                },
+                success: function (data) {
+                    $('#weeklyDiv').empty();
+                    $('#weeklyDiv').html(data);
+                    $('.tobng').each(function () {
+                        var currentElement = $(this);
+                        var value = currentElement.html().trim();
+                        currentElement.html(convertToBanglanumber(value));
+                    });
+                },
+                complete: function () {
+                    $('#bannerDiv').show();
+                    $('#bn2').show();
+                    $('#nextLoader').hide();
+                }
+            });
+        }
+
+    </script>
+}
